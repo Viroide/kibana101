@@ -29,7 +29,7 @@ import QueryBox from "./static/img/search-box.png";
 
 provision vagrant including the `never` tag
     
-    ANSIBLE_ARGS='--skip-tags="never"' vagrant provision
+    ANSIBLE_ARGS='--include-tags="never"' vagrant provision
 
 docker-compose elk-stack [local kibana](http://localhost:5601 ) ([provisioning repo](https://github.com/gluckgames/provisioning))
     
