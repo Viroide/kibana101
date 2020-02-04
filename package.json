@@ -1,0 +1,17 @@
+{
+  "name": "kibana_presentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck kibana.mdx",
+    "build": "mdx-deck build kibana.mdx",
+    "save-pdf": "website-pdf http://localhost:8000/print -o deck.pdf"
+  },
+  "author": "Jon E. Eguiluz",
+  "license": "ISC",
+  "devDependencies": {
+    "mdx-deck": "^3.0.13",
+    "website-pdf": "^3.0.8"
+  }
+}

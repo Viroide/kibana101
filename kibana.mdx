@@ -1,0 +1,134 @@
+import { yellow } from 'mdx-deck/themes'
+import { Image } from 'mdx-deck'
+export const theme = yellow
+
+import Indexs from "./static/img/indexs.png";
+import QueryBox from "./static/img/search-box.png";
+
+# Kibana 101
+
+---
+# First things, first
+
+[Kibana v3](https://kibana-v3.gamevy.com:9243/)
+
+##### (get your credentials, 🤬)
+
+---
+
+# Graham would say:
+
+1. Select index <br />
+    <img src={Indexs} />
+2. Do your query <br />
+    <img src={QueryBox} />
+3. lost interest, 🦙
+
+---
+# local kibana
+
+provision vagrant including the `never` tag
+    
+    ANSIBLE_ARGS='--skip-tags="never"' vagrant provision
+
+docker-compose elk-stack [local kibana](http://localhost:5601 ) ([provisioning repo](https://github.com/gluckgames/provisioning))
+    
+    docker-compose -f local-elk.yml up
+
+---
+# Kibana cloud
+
+we pay to have a kibana hosted by [elastic.co](https://www.elastic.co/elastic-stack)
+
+---
+# What can kibana do for us?
+
+- Indexed logs (14 days)
+- Usage metrics (CPU, MEM%...)
+- Database overview
+- APM
+
+---
+# Indexed logs
+
+- display desired columns (formatted)
+- can filter by lots of fields
+    - region, env, server...
+- select dates between
+    - last hour, 2 absolute dates...
+
+---
+# Usage metrics
+## [kibana System overview](https://kibana-v3.gamevy.com:9243/app/kibana#/dashboard/fc1c5e40-05f7-11ea-afc8-b5823b82cf90?_g=()&_a=(description:'Overview%20of%20system%20metrics',filters:!(),fullScreenMode:!f,options:(darkTheme:!f),panels:!((embeddableConfig:(),gridData:(h:4,i:'9',w:48,x:0,y:0),id:System-Navigation-ecs,panelIndex:'9',type:visualization,version:'7.4.0'),(embeddableConfig:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),gridData:(h:8,i:'11',w:8,x:0,y:4),id:c6f2ffd0-4d17-11e7-a196-69b9a7a020a9-ecs,panelIndex:'11',type:visualization,version:'7.4.0'),(embeddableConfig:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),gridData:(h:20,i:'12',w:24,x:24,y:12),id:fe064790-1b1f-11e7-bec4-a5e9ec5cab8b-ecs,panelIndex:'12',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:20,i:'13',w:24,x:0,y:12),id:'855899e0-1b1c-11e7-b09e-037021c4f8df-ecs',panelIndex:'13',type:visualization,version:'7.4.0'),(embeddableConfig:(vis:(defaultColors:('0%25%20-%2015%25':'rgb(247,252,245)','15%25%20-%2030%25':'rgb(199,233,192)','30%25%20-%2045%25':'rgb(116,196,118)','45%25%20-%2060%25':'rgb(35,139,69)'))),gridData:(h:24,i:'14',w:48,x:0,y:32),id:'7cdb1330-4d1a-11e7-a196-69b9a7a020a9-ecs',panelIndex:'14',type:visualization,version:'7.4.0'),(embeddableConfig:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),gridData:(h:8,i:'16',w:8,x:32,y:4),id:'522ee670-1b92-11e7-bec4-a5e9ec5cab8b-ecs',panelIndex:'16',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'17',w:8,x:40,y:4),id:'1aae9140-1b93-11e7-8ada-3df93aab833e-ecs',panelIndex:'17',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'18',w:8,x:24,y:4),id:'825fdb80-4d1d-11e7-b5f2-2b7c1895bf32-ecs',panelIndex:'18',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'19',w:8,x:16,y:4),id:d3166e80-1b91-11e7-bec4-a5e9ec5cab8b-ecs,panelIndex:'19',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'20',w:8,x:8,y:4),id:'83e12df0-1b91-11e7-bec4-a5e9ec5cab8b-ecs',panelIndex:'20',type:visualization,version:'7.4.0')),query:(language:kuery,query:''),timeRestore:!f,title:'G%20-System%20overview%20',viewMode:view))
+## [kibana Host overview](https://kibana-v3.gamevy.com:9243/app/kibana#/dashboard/79ffd6e0-faa0-11e6-947f-177f697178b8-ecs?_a=(description:'Overview%20of%20host%20metrics',filters:!(),fullScreenMode:!f,options:(darkTheme:!f),panels:!((embeddableConfig:(),gridData:(h:12,i:'1',w:24,x:0,y:44),id:'6b7b9a40-faa1-11e6-86b1-cd7735ff7e23-ecs',panelIndex:'1',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'2',w:24,x:24,y:20),id:'4d546850-1b15-11e7-b09e-037021c4f8df-ecs',panelIndex:'2',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'3',w:24,x:24,y:44),id:'089b85d0-1b16-11e7-b09e-037021c4f8df-ecs',panelIndex:'3',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'4',w:24,x:0,y:32),id:bfa5e400-1b16-11e7-b09e-037021c4f8df-ecs,panelIndex:'4',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'5',w:24,x:24,y:56),id:e0f001c0-1b18-11e7-b09e-037021c4f8df-ecs,panelIndex:'5',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'6',w:24,x:0,y:56),id:'2e224660-1b19-11e7-b09e-037021c4f8df-ecs',panelIndex:'6',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'7',w:24,x:0,y:20),id:ab2d1e90-1b1a-11e7-b09e-037021c4f8df-ecs,panelIndex:'7',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'8',w:24,x:24,y:32),id:'4e4bb1e0-1b1b-11e7-b09e-037021c4f8df-ecs',panelIndex:'8',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'9',w:8,x:16,y:4),id:'26732e20-1b91-11e7-bec4-a5e9ec5cab8b-ecs',panelIndex:'9',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'10',w:8,x:0,y:4),id:'83e12df0-1b91-11e7-bec4-a5e9ec5cab8b-ecs',panelIndex:'10',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'11',w:8,x:8,y:4),id:d3166e80-1b91-11e7-bec4-a5e9ec5cab8b-ecs,panelIndex:'11',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'12',w:8,x:24,y:4),id:'522ee670-1b92-11e7-bec4-a5e9ec5cab8b-ecs',panelIndex:'12',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'13',w:8,x:32,y:4),id:'1aae9140-1b93-11e7-8ada-3df93aab833e-ecs',panelIndex:'13',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'14',w:16,x:32,y:12),id:'34f97ee0-1b96-11e7-8ada-3df93aab833e-ecs',panelIndex:'14',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:4,i:'16',w:24,x:0,y:0),id:System-Navigation-ecs,panelIndex:'16',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'21',w:8,x:0,y:12),id:'19e123b0-4d5a-11e7-aee5-fdc812cc3bec-ecs',panelIndex:'21',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'22',w:8,x:8,y:12),id:d2e80340-4d5c-11e7-aa29-87a97a796de6-ecs,panelIndex:'22',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'23',w:8,x:24,y:12),id:'825fdb80-4d1d-11e7-b5f2-2b7c1895bf32-ecs',panelIndex:'23',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:8,i:'25',w:8,x:40,y:4),id:'96976150-4d5d-11e7-aa29-87a97a796de6-ecs',panelIndex:'25',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'27',w:24,x:0,y:68),id:'99381c80-4d60-11e7-9a4c-ed99bbcaa42b-ecs',panelIndex:'27',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:12,i:'28',w:24,x:24,y:68),id:c5e3cf90-4d60-11e7-9a4c-ed99bbcaa42b-ecs,panelIndex:'28',type:visualization,version:'7.4.0'),(embeddableConfig:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),gridData:(h:8,i:'29',w:8,x:16,y:12),id:'590a60f0-5d87-11e7-8884-1bb4c3b890e4-ecs',panelIndex:'29',type:visualization,version:'7.4.0'),(embeddableConfig:(),gridData:(h:4,i:'30',w:24,x:24,y:0),id:'3d65d450-a9c3-11e7-af20-67db8aecb295-ecs',panelIndex:'30',type:visualization,version:'7.4.0')),query:(language:kuery,query:'host.name:%22prod-lon-app-01%22'),timeRestore:!f,title:'%5BMetricbeat%20System%5D%20Host%20overview%20ECS',viewMode:view)&_g=())
+
+---
+# Database overview
+## [kibana database overview](https://kibana-v3.gamevy.com:9243/app/kibana#/dashboard/4288b790-b79f-11e9-a579-f5c0a5d81340?_g=(refreshInterval:(pause:!t,value:0),time:(from:now%2Fd,to:now%2Fd))&_a=(description:'This%20PostgreSQL%20dashboard%20shows%20the%20most%20important%20database%20related%20metrics.%0A%0A',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(title:'Query%20Latency'),gridData:(h:12,i:'1',w:24,x:0,y:6),id:fbfa67e0-b796-11e9-a579-f5c0a5d81340,panelIndex:'1',title:'Query%20Latency',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Database%20Transactions'),gridData:(h:12,i:'2',w:24,x:24,y:0),id:d733c630-b797-11e9-a579-f5c0a5d81340,panelIndex:'2',title:'Database%20Transactions',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Fileblock%20IO'),gridData:(h:10,i:'3',w:24,x:0,y:18),id:'570973a0-b798-11e9-a579-f5c0a5d81340',panelIndex:'3',title:'Fileblock%20IO',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Rows%20Fetched%2FReturned'),gridData:(h:6,i:'4',w:14,x:10,y:0),id:'66d67200-b799-11e9-a579-f5c0a5d81340',panelIndex:'4',title:'Rows%20Fetched%2FReturned',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Rows%20Inserted%2FDeleted%2FUpdated'),gridData:(h:9,i:'5',w:24,x:24,y:22),id:'20931ef0-b79a-11e9-a579-f5c0a5d81340',panelIndex:'5',title:'Rows%20Inserted%2FDeleted%2FUpdated',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Conflict%2FDeadlock%20Rates'),gridData:(h:11,i:'6',w:24,x:0,y:28),id:'960ecdf0-b79a-11e9-a579-f5c0a5d81340',panelIndex:'6',title:'Conflict%2FDeadlock%20Rates',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Database%20Filter'),gridData:(h:6,i:'7',w:10,x:0,y:0),id:'98e6b0a0-b79b-11e9-a579-f5c0a5d81340',panelIndex:'7',title:'Database%20Filter',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Query%20Calls%20Count'),gridData:(h:10,i:'8',w:24,x:24,y:12),id:'147875b0-b903-11e9-a579-f5c0a5d81340',panelIndex:'8',title:'Query%20Calls%20Count',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Local%20block%20cache%20stats'),gridData:(h:8,i:'9',w:12,x:24,y:31),id:'0cb65170-b909-11e9-a579-f5c0a5d81340',panelIndex:'9',title:'Local%20block%20cache%20stats',type:visualization,version:'7.4.0'),(embeddableConfig:(title:'Shared%20block%20cache%20stats'),gridData:(h:8,i:'10',w:12,x:36,y:31),id:e2b28ce0-b908-11e9-a579-f5c0a5d81340,panelIndex:'10',title:'Shared%20block%20cache%20stats',type:visualization,version:'7.4.0')),query:(language:kuery,query:'environment%20:%20%22prod%22'),timeRestore:!f,title:'%5BMetricbeat%20PostgreSQL%5D%20Database%20Overview',viewMode:view))
+
+---
+# APM
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HJC5O9X93Vs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+(Alguna Pregunta Mes?)
+
+---
+# APM
+## [Kibana APM](https://kibana-v3.gamevy.com:9243/app/apm#/services)
+
+Example [/pool-scratch/purchase](https://kibana-v3.gamevy.com:9243/app/apm#/services/LON%20prod%20-%20pool-scratch/transactions/view?rangeFrom=now-24h&rangeTo=now&refreshPaused=true&refreshInterval=0&traceId=4c25f0b7c01bbd2d652b7b04e3ea4a78&transactionId=fce4e8814ccfb630&transactionName=POST%20%2Fpool-scratch%2Fpurchase&transactionType=request)
+
+---
+# How does it do it?
+# 🤩
+
+---
+# Agents
+
+- [filebeat](https://www.elastic.co/es/beats/filebeat)
+- [metricbeat](https://www.elastic.co/es/beats/metricbeat)
+- [apm](https://www.elastic.co/es/apm)
+
+---
+# but how?
+
+- [filebeat](https://github.com/gluckgames/bornlucky/blob/master/provision/ansible/roles/filebeat-shipper/templates/filebeat.7.yml.j2#L16-L15)
+- [metricbeat](https://github.com/gluckgames/bornlucky/blob/master/provision/ansible/roles/metricbeat-shipper/templates/system-module-configuration.yml.j2)
+- [apm](https://github.com/gluckgames/bornlucky/blob/master/provision/ansible/roles/elastic-apm-config/config.j2)
+
+##### short answer: ansible install them.
+
+---
+# Ingest nodes
+
+- [filter_by_app](https://github.com/gluckgames/bornlucky/blob/master/provision/ansible/roles/elasticsearch-ingest-nodes/files/filter_by_application.json)
+- index by [region-env-date](https://github.com/gluckgames/bornlucky/blob/master/provision/ansible/roles/elasticsearch-ingest-nodes/files/bornlucky_parsing.json#L33)
+
+---
+# Index patterns
+
+[Ansible creates them](https://github.com/gluckgames/bornlucky/blob/master/provision/ansible/roles/kibana-index-patterns/tasks/main.yml#L11)
+
+---
+# Index Lifecycle Policies
+
+## [time to keep the index](https://github.com/gluckgames/bornlucky/blob/master/provision/ansible/roles/filebeat-shipper/files/ilm_policy.json)
+
+---
+<Image src="https://media.giphy.com/media/3o7btNhMBytxAM6YBa/giphy.gif" />
+
+---
+<a href="https://play.kahoot.it/v2/?quizId=b2583001-a36a-49b9-bfd3-e40eb036e9f7">
+
+```js
+kahoot.start();
+```
+</a>
+
+---
+<Image src="https://media.giphy.com/media/l378tuAr9YLqyxY64/giphy.gif" />
+
+---
+# The end
+
+
